@@ -63,78 +63,68 @@
             OP_LDM: begin
                 result = operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (operand_b == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_CLR: begin
                 result = 4'b0000;
                 carry_flag_out = 1'b0;
-                zero_flag_out = 1'b1;
             end
 
             OP_LD: begin
                 result = operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (operand_b == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_XCH: begin
                 result = operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (operand_b == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_ADD: begin
-                temp_carry_result = acc + operand_b;
+                temp_carry_result = {1'b0, acc} + {1'b0, operand_b};
                 result = temp_carry_result[3:0];
                 carry_flag_out = temp_carry_result[4];
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_SUB: begin
-                temp_carry_result = acc - operand_b;
+                temp_carry_result = {1'b0, acc} - {1'b0, operand_b};
                 result = temp_carry_result[3:0];
                 carry_flag_out = (acc < operand_b) ? 1'b1 : 1'b0;
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_INC: begin
-                temp_carry_result = acc + 1;
+                temp_carry_result = {1'b0, acc} + 5'b00001;
                 result = temp_carry_result[3:0];
                 carry_flag_out = temp_carry_result[4];
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_DEC: begin
-                temp_carry_result = acc - 1;
+                temp_carry_result = {1'b0, acc} - 5'b00001;
                 result = temp_carry_result[3:0];
-                carry_flag_out = (acc == 4'b0000) ? 1'b1 : 1'b0;
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
+                carry_flag_out = (acc == 4'b00000) ? 1'b1 : 1'b0;
             end
 
             OP_AND: begin
                 result = acc & operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_OR: begin
                 result = acc | operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             OP_XOR: begin
                 result = acc ^ operand_b;
                 carry_flag_out = 1'b0;
-                zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
             end
 
             default: begin
                 result = 4'b0000;
                 carry_flag_out = 1'b0;
-                zero_flag_out = 1'b1;
             end
         endcase
+        
+        zero_flag_out = (result == 4'b0000) ? 1'b1 : 1'b0;
     end
  endmodule
