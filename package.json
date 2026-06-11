@@ -1,0 +1,15 @@
+{
+  "name": "arina-4",
+  "version": "0.0.1",
+  "description": "Package metadata for Arina-4 repository",
+  "main": "rtl/arina4_cpu.v",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "BSD-3-Clause"
+}
