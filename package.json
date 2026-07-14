@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
     "lint:tabs": "node tools/check-verilog-tabs.js",
+    "lint:verilog-style": "node tools/check-verilog-tabs.js",
     "hooks:install": "git config core.hooksPath .githooks"
   },
   "repository": {
