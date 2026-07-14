@@ -149,7 +149,7 @@ module arina4_cpu (
     );
 
     bus_mux u_bus_mux (
-        .sel(cu_wb_sel),
+        .in_select(cu_wb_sel),
         .in_alu(alu_result),
         .in_imm(dec_imm4),
         .in_reg(reg_rd_data),
