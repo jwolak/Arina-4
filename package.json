@@ -1,12 +1,13 @@
 {
   "name": "arina-4",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Package metadata for Arina-4 repository",
   "main": "rtl/arina4_cpu.v",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
     "lint:tabs": "node tools/check-verilog-tabs.js",
     "lint:verilog-style": "node tools/check-verilog-tabs.js",
+    "version:bump": "node tools/bump-version.js",
     "hooks:install": "git config core.hooksPath .githooks"
   },
   "repository": {

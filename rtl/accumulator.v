@@ -32,17 +32,17 @@
 
 module accumulator (
     input wire clk,
-    input wire rst,
+    input wire reset,
     input wire load,
     input wire [3:0] data_in,
-    output reg [3:0] value
+    output reg [3:0] acc_value
 );
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            value <= 4'h0;
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            acc_value <= 4'b0;
         end else if (load) begin
-            value <= data_in;
+            acc_value <= data_in;
         end
     end
 
