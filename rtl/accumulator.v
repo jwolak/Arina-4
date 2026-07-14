@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  *
  */
- 
+
 module accumulator (
 	input wire clk,
 	input wire rst,
