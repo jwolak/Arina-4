@@ -31,24 +31,24 @@
  */
  
 module pc #(
-	parameter WIDTH = 8
+    parameter WIDTH = 8
 ) (
-	input wire clk,
-	input wire rst,
-	input wire inc,
-	input wire load,
-	input wire [WIDTH-1:0] load_value,
-	output reg [WIDTH-1:0] value
+    input wire clk,
+    input wire rst,
+    input wire inc,
+    input wire load,
+    input wire [WIDTH-1:0] load_value,
+    output reg [WIDTH-1:0] value
 );
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			value <= {WIDTH{1'b0}};
-		end else if (load) begin
-			value <= load_value;
-		end else if (inc) begin
-			value <= value + {{(WIDTH-1){1'b0}}, 1'b1};
-		end
-	end
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            value <= {WIDTH{1'b0}};
+        end else if (load) begin
+            value <= load_value;
+        end else if (inc) begin
+            value <= value + {{(WIDTH-1){1'b0}}, 1'b1};
+        end
+    end
 
 endmodule

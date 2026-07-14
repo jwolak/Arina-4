@@ -31,19 +31,19 @@
  */
  
 module ir (
-	input wire clk,
-	input wire rst,
-	input wire load,
-	input wire [7:0] data_in,
-	output reg [7:0] instr
+    input wire clk,
+    input wire rst,
+    input wire load,
+    input wire [7:0] data_in,
+    output reg [7:0] instr
 );
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			instr <= 8'h00;
-		end else if (load) begin
-			instr <= data_in;
-		end
-	end
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            instr <= 8'h00;
+        end else if (load) begin
+            instr <= data_in;
+        end
+    end
 
 endmodule

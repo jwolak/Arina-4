@@ -31,36 +31,36 @@
  */
  
 module register_file (
-	input wire clk,
-	input wire rst,
-	input wire [1:0] rd_sel,
-	output wire [3:0] rd_data,
-	input wire [1:0] wr_sel,
-	input wire [3:0] wr_data,
-	input wire we,
-	output wire [3:0] r0,
-	output wire [3:0] r1,
-	output wire [3:0] r2,
-	output wire [3:0] r3
+    input wire clk,
+    input wire rst,
+    input wire [1:0] rd_sel,
+    output wire [3:0] rd_data,
+    input wire [1:0] wr_sel,
+    input wire [3:0] wr_data,
+    input wire we,
+    output wire [3:0] r0,
+    output wire [3:0] r1,
+    output wire [3:0] r2,
+    output wire [3:0] r3
 );
 
-	reg [3:0] regs [0:3];
+    reg [3:0] regs [0:3];
 
-	assign rd_data = regs[rd_sel];
-	assign r0 = regs[0];
-	assign r1 = regs[1];
-	assign r2 = regs[2];
-	assign r3 = regs[3];
+    assign rd_data = regs[rd_sel];
+    assign r0 = regs[0];
+    assign r1 = regs[1];
+    assign r2 = regs[2];
+    assign r3 = regs[3];
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			regs[0] <= 4'h1;
-			regs[1] <= 4'h2;
-			regs[2] <= 4'h3;
-			regs[3] <= 4'h4;
-		end else if (we) begin
-			regs[wr_sel] <= wr_data;
-		end
-	end
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            regs[0] <= 4'h1;
+            regs[1] <= 4'h2;
+            regs[2] <= 4'h3;
+            regs[3] <= 4'h4;
+        end else if (we) begin
+            regs[wr_sel] <= wr_data;
+        end
+    end
 
 endmodule

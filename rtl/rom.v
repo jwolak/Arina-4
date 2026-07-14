@@ -31,40 +31,40 @@
  */
  
 module rom #(
-	parameter ADDR_WIDTH = 8,
-	parameter DATA_WIDTH = 8,
-	parameter MEM_FILE = ""
+    parameter ADDR_WIDTH = 8,
+    parameter DATA_WIDTH = 8,
+    parameter MEM_FILE = ""
 ) (
-	input wire [ADDR_WIDTH-1:0] addr,
-	output wire [DATA_WIDTH-1:0] data
+    input wire [ADDR_WIDTH-1:0] addr,
+    output wire [DATA_WIDTH-1:0] data
 );
 
-	reg [DATA_WIDTH-1:0] mem [0:(1 << ADDR_WIDTH)-1];
-	integer i;
+    reg [DATA_WIDTH-1:0] mem [0:(1 << ADDR_WIDTH)-1];
+    integer i;
 
-	assign data = mem[addr];
+    assign data = mem[addr];
 
-	initial begin
-		for (i = 0; i < (1 << ADDR_WIDTH); i = i + 1) begin
-			mem[i] = {DATA_WIDTH{1'b0}};
-		end
+    initial begin
+        for (i = 0; i < (1 << ADDR_WIDTH); i = i + 1) begin
+            mem[i] = {DATA_WIDTH{1'b0}};
+        end
 
-		if (MEM_FILE != "") begin
-			$readmemh(MEM_FILE, mem);
-		end else begin
-			// Default bring-up program:
-			// 0x00: LDM 5
-			// 0x01: ADD R1
-			// 0x02: XCH R0
-			// 0x03: INC
-			// 0x04: DEC
-			mem[8'h00] = 8'h05;
-			mem[8'h01] = 8'h41;
-			mem[8'h02] = 8'h30;
-			mem[8'h03] = 8'h60;
-			mem[8'h04] = 8'h70;
-			mem[8'h05] = 8'h00;
-		end
-	end
+        if (MEM_FILE != "") begin
+            $readmemh(MEM_FILE, mem);
+        end else begin
+            // Default bring-up program:
+            // 0x00: LDM 5
+            // 0x01: ADD R1
+            // 0x02: XCH R0
+            // 0x03: INC
+            // 0x04: DEC
+            mem[8'h00] = 8'h05;
+            mem[8'h01] = 8'h41;
+            mem[8'h02] = 8'h30;
+            mem[8'h03] = 8'h60;
+            mem[8'h04] = 8'h70;
+            mem[8'h05] = 8'h00;
+        end
+    end
 
 endmodule

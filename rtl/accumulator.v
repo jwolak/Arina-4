@@ -31,19 +31,19 @@
  */
 
 module accumulator (
-	input wire clk,
-	input wire rst,
-	input wire load,
-	input wire [3:0] data_in,
-	output reg [3:0] value
+    input wire clk,
+    input wire rst,
+    input wire load,
+    input wire [3:0] data_in,
+    output reg [3:0] value
 );
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			value <= 4'h0;
-		end else if (load) begin
-			value <= data_in;
-		end
-	end
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            value <= 4'h0;
+        end else if (load) begin
+            value <= data_in;
+        end
+    end
 
 endmodule

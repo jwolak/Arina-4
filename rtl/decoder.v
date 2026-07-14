@@ -31,14 +31,14 @@
  */
  
 module decoder (
-	input wire [7:0] instr,
-	output wire [3:0] opcode,
-	output wire [1:0] reg_sel,
-	output wire [3:0] imm4
+    input wire [7:0] instr,
+    output wire [3:0] opcode,
+    output wire [1:0] reg_sel,
+    output wire [3:0] imm4
 );
 
-	assign opcode = instr[7:4];
-	assign reg_sel = instr[1:0];
-	assign imm4 = instr[3:0];
+    assign opcode = instr[7:4];
+    assign reg_sel = instr[1:0];
+    assign imm4 = instr[3:0];
 
 endmodule

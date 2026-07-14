@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.insertSpaces": true,
   "editor.tabSize": 4,
   "editor.detectIndentation": false,
@@ -7,12 +8,16 @@
   "files.insertFinalNewline": true,
   "[verilog]": {
     "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "mshr-h.veriloghdl",
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "editor.detectIndentation": false
   },
   "[systemverilog]": {
     "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "mshr-h.veriloghdl",
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "editor.detectIndentation": false

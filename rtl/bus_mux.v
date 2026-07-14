@@ -31,21 +31,21 @@
  */
  
 module bus_mux (
-	input wire [1:0] sel,
-	input wire [3:0] in_alu,
-	input wire [3:0] in_imm,
-	input wire [3:0] in_reg,
-	input wire [3:0] in_zero,
-	output reg [3:0] out
+    input wire [1:0] sel,
+    input wire [3:0] in_alu,
+    input wire [3:0] in_imm,
+    input wire [3:0] in_reg,
+    input wire [3:0] in_zero,
+    output reg [3:0] out
 );
 
-	always @(*) begin
-		case (sel)
-			2'b00: out = in_alu;
-			2'b01: out = in_imm;
-			2'b10: out = in_reg;
-			default: out = in_zero;
-		endcase
-	end
+    always @(*) begin
+        case (sel)
+            2'b00: out = in_alu;
+            2'b01: out = in_imm;
+            2'b10: out = in_reg;
+            default: out = in_zero;
+        endcase
+    end
 
 endmodule

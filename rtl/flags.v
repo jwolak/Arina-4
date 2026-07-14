@@ -31,23 +31,23 @@
  */
  
 module flags (
-	input wire clk,
-	input wire rst,
-	input wire we,
-	input wire carry_in,
-	input wire zero_in,
-	output reg carry,
-	output reg zero
+    input wire clk,
+    input wire rst,
+    input wire we,
+    input wire carry_in,
+    input wire zero_in,
+    output reg carry,
+    output reg zero
 );
 
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			carry <= 1'b0;
-			zero <= 1'b0;
-		end else if (we) begin
-			carry <= carry_in;
-			zero <= zero_in;
-		end
-	end
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            carry <= 1'b0;
+            zero <= 1'b0;
+        end else if (we) begin
+            carry <= carry_in;
+            zero <= zero_in;
+        end
+    end
 
 endmodule
