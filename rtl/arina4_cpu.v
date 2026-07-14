@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  *
  */
- 
+
 module arina4_cpu (
     input wire clk,
     input wire rst,
@@ -149,7 +149,7 @@ module arina4_cpu (
     );
 
     bus_mux u_bus_mux (
-        .sel(cu_wb_sel),
+        .in_select(cu_wb_sel),
         .in_alu(alu_result),
         .in_imm(dec_imm4),
         .in_reg(reg_rd_data),
@@ -159,7 +159,7 @@ module arina4_cpu (
 
     accumulator u_acc (
         .clk(clk),
-        .rst(rst),
+        .reset(rst),
         .load(cu_acc_load),
         .data_in(wb_bus),
         .value(acc_value)

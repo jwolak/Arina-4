@@ -29,9 +29,9 @@
  * SUCH DAMAGE.
  *
  */
- 
+
 module bus_mux (
-    input wire [1:0] sel,
+    input wire [1:0] in_select,
     input wire [3:0] in_alu,
     input wire [3:0] in_imm,
     input wire [3:0] in_reg,
@@ -40,7 +40,7 @@ module bus_mux (
 );
 
     always @(*) begin
-        case (sel)
+        case (in_select)
             2'b00: out = in_alu;
             2'b01: out = in_imm;
             2'b10: out = in_reg;

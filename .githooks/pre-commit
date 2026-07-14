@@ -7,4 +7,13 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
+node tools/bump-version.js
+status=$?
+
+if [ $status -ne 0 ]; then
+  exit $status
+fi
+
+git add package.json
+
 exit 0

@@ -35,6 +35,19 @@ function findTabLines(content) {
     return hits;
 }
 
+function findTrailingWhitespaceLines(content) {
+    const lines = content.split(/\r?\n/);
+    const hits = [];
+
+    for (let i = 0; i < lines.length; i += 1) {
+        if (/[ \t]+$/.test(lines[i])) {
+            hits.push(i + 1);
+        }
+    }
+
+    return hits;
+}
+
 function main() {
     let stagedFiles = [];
 
@@ -50,7 +63,8 @@ function main() {
         process.exit(0);
     }
 
-    const offenders = [];
+    const tabOffenders = [];
+    const trailingWhitespaceOffenders = [];
 
     for (const file of stagedFiles) {
         let content;
@@ -63,23 +77,42 @@ function main() {
             process.exit(1);
         }
 
-        const hitLines = findTabLines(content);
-        if (hitLines.length > 0) {
-            offenders.push({ file, hitLines });
+        const tabLines = findTabLines(content);
+        if (tabLines.length > 0) {
+            tabOffenders.push({ file, hitLines: tabLines });
+        }
+
+        const trailingWhitespaceLines = findTrailingWhitespaceLines(content);
+        if (trailingWhitespaceLines.length > 0) {
+            trailingWhitespaceOffenders.push({ file, hitLines: trailingWhitespaceLines });
         }
     }
 
-    if (offenders.length === 0) {
+    if (tabOffenders.length === 0 && trailingWhitespaceOffenders.length === 0) {
         process.exit(0);
     }
 
-    console.error("\nCommit blocked: tab characters found in staged Verilog files.\n");
-    for (const offender of offenders) {
-        const lines = offender.hitLines.join(", ");
-        console.error(`- ${offender.file} (lines: ${lines})`);
+    console.error("\nCommit blocked: style violations found in staged Verilog files.\n");
+
+    if (tabOffenders.length > 0) {
+        console.error("Tab characters found:");
+        for (const offender of tabOffenders) {
+            const lines = offender.hitLines.join(", ");
+            console.error(`- ${offender.file} (lines: ${lines})`);
+        }
+        console.error("");
     }
 
-    console.error("\nUse spaces (4) instead of tabs and re-stage files.\n");
+    if (trailingWhitespaceOffenders.length > 0) {
+        console.error("Trailing whitespace found:");
+        for (const offender of trailingWhitespaceOffenders) {
+            const lines = offender.hitLines.join(", ");
+            console.error(`- ${offender.file} (lines: ${lines})`);
+        }
+        console.error("");
+    }
+
+    console.error("Use spaces (4), remove trailing whitespace, and re-stage files.\n");
     process.exit(1);
 }
 
