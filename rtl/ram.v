@@ -31,30 +31,30 @@
  */
  
 module ram #(
-	parameter ADDR_WIDTH = 8,
-	parameter DATA_WIDTH = 4
+    parameter ADDR_WIDTH = 8,
+    parameter DATA_WIDTH = 4
 ) (
-	input wire clk,
-	input wire we,
-	input wire [ADDR_WIDTH-1:0] addr,
-	input wire [DATA_WIDTH-1:0] din,
-	output reg [DATA_WIDTH-1:0] dout
+    input wire clk,
+    input wire we,
+    input wire [ADDR_WIDTH-1:0] addr,
+    input wire [DATA_WIDTH-1:0] din,
+    output reg [DATA_WIDTH-1:0] dout
 );
 
-	reg [DATA_WIDTH-1:0] mem [0:(1 << ADDR_WIDTH)-1];
-	integer i;
+    reg [DATA_WIDTH-1:0] mem [0:(1 << ADDR_WIDTH)-1];
+    integer i;
 
-	initial begin
-		for (i = 0; i < (1 << ADDR_WIDTH); i = i + 1) begin
-			mem[i] = {DATA_WIDTH{1'b0}};
-		end
-	end
+    initial begin
+        for (i = 0; i < (1 << ADDR_WIDTH); i = i + 1) begin
+            mem[i] = {DATA_WIDTH{1'b0}};
+        end
+    end
 
-	always @(posedge clk) begin
-		if (we) begin
-			mem[addr] <= din;
-		end
-		dout <= mem[addr];
-	end
+    always @(posedge clk) begin
+        if (we) begin
+            mem[addr] <= din;
+        end
+        dout <= mem[addr];
+    end
 
 endmodule
